@@ -74,19 +74,9 @@ def getCards(im, numcards=4):
 
   contours = sorted(contours, key=cv2.contourArea,reverse=True)[:numcards]  
 
-  for i in range(numcards):
-    card = contours[i]
-
+  for card in contours:
     peri = cv2.arcLength(card,True)
-    approx = cv2.approxPolyDP(card,0.02*peri,True)
-
-    rect = cv2.minAreaRect(contours[2])
-    r = cv2.cv.BoxPoints(rect)
-    
-    r = np.array(r).astype(float)
-
-    approx=rectify(approx)
-
+    approx = rectify(cv2.approxPolyDP(card,0.02*peri,True))
 
     # box = np.int0(approx)
     # cv2.drawContours(im,[box],0,(255,255,0),6)
