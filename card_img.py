@@ -80,7 +80,7 @@ def getCards(im, numcards=4):
     peri = cv2.arcLength(card,True)
     approx = cv2.approxPolyDP(card,0.02*peri,True)
 
-    rect = cv2.minAreaRect(contours[2])
+    rect = cv2.minAreaRect(contours[i])
     r = cv2.cv.BoxPoints(rect)
     
     r = np.array(r).astype(float)
